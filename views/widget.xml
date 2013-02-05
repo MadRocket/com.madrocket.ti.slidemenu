@@ -1,0 +1,10 @@
+<Alloy>
+  <Window id="slideMenu">
+    <Window id="slideMenuDrawer" top="0" left="0" zIndex="1">
+
+    </Window>
+    <Window id="slideMenuContent" top="0" left="0" zIndex="10">
+
+    </Window>
+  </Window>
+</Alloy>
