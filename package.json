@@ -1,0 +1,20 @@
+{
+  "name": "com.madrocket.ti.slidemenu",
+  "version": "0.1.0",
+  "description": "Titanium Alloy Slide Menu Widget",
+  "main": "controllers/widget.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MadRocket/com.madrocket.ti.slidemenu.git "
+  },
+  "keywords": [
+    "titanium",
+    "alloy",
+    "menu"
+  ],
+  "author": "Dmitriy Rozhkov",
+  "license": "BSD"
+}
