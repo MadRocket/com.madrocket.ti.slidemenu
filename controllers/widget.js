@@ -1,7 +1,8 @@
 var drawer = {
   is_opened: false,
   initialize: function(content) {
-    // this.width = content.width;
+    this.setWidth(content.width);
+    console.log(this.width);
     this.add(content);
   },
   openDrawer: function() {
@@ -26,7 +27,7 @@ var drawer = {
 
 _.extend($.leftDrawer, drawer, {
   drawerOpenAnimation: Ti.UI.createAnimation({
-    left  : 250,
+    left  : this.width,
     curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
     duration : 150
   }),
@@ -39,7 +40,7 @@ _.extend($.leftDrawer, drawer, {
 
 _.extend($.rightDrawer, drawer, {
   drawerOpenAnimation: Ti.UI.createAnimation({
-    left : - 250,
+    left : - this.getWidth(),
     curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
     duration : 150
   }),
@@ -53,19 +54,19 @@ _.extend($.rightDrawer, drawer, {
 $.leftDrawer.on('open', function(){
   $.leftDrawer.zIndex = 2;
   $.rightDrawer.zIndex = 1;
-  $.trigger('left_open');
+  $.trigger('open:[left]');
 });
 $.leftDrawer.on('close', function(){
-  $.trigger('left_close');
+  $.trigger('close:[left]');
 });
 
 $.rightDrawer.on('open', function(){
   $.leftDrawer.zIndex = 1;
   $.rightDrawer.zIndex = 2;
-  $.trigger('right_open');
+  $.trigger('open:[right]');
 });
 $.rightDrawer.on('close', function(){
-  $.trigger('right_close');
+  $.trigger('close:[right]');
 });
 
 
