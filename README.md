@@ -16,12 +16,20 @@ In your controller:
     
     var content = Alloy.createController('content');
     $.menu.init({
-      drawer:  Alloy.createController('menu').getView(),
+      leftDrawer:  Alloy.createController('leftmenu').getView(),
+      rightDrawer:  Alloy.createController('rightmenu').getView(),
       content: content.getView()
     });
     
-    // Assume you have this button in the 'content' view
+    // Assume you have these buttons in the 'content' view
     content.menuButton.on('singletap', $.menu.toggle);
+    content.leftb.on('click', function(){
+      $.menu.leftDrawer.toggleDrawer();
+    });
+    content.rightb.on('click', function(){
+      $.menu.rightDrawer.toggleDrawer();
+    });
+    
     $.menu.slideMenu.on('open', function(e){
       // Do something on open
     });
