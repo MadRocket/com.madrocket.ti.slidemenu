@@ -3,7 +3,7 @@
 	"name": "com.madrocket.ti.slidemenu",
 	"description" : "Facebook style menu drawer",
 	"author": "Dmitriy Rozhkov, MadRocket",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"copyright":"MadRocket (c) 2013",
 	"license":"MIT",
 	"min-alloy-version": "1.0",
