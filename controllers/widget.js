@@ -1,31 +1,71 @@
-_.extend($.slideMenu, {
-  leftAnimation: Ti.UI.createAnimation({
-    left : 232,
+var defaults = {
+  leftDrawerWidth:  250,
+  rightDrawerWidth: 250
+}
+
+$._params = {};
+
+var drawer = {
+  is_opened: false,
+  openDrawer: function() {
+    $.slideMenu.fireEvent('open');
+    $.content.animate(this.drawerOpenAnimation);
+    this.is_opened = true;
+  },
+  closeDrawer: function() {
+    $.slideMenu.fireEvent('close');
+    $.content.animate(this.drawerCloseAnimation);
+    this.is_opened = false;
+  },
+  toggleDrawer: function() {
+    if(this.is_opened) {
+      this.closeDrawer();
+    }
+    else {
+      this.openDrawer();
+    }
+  }
+};
+
+_.extend($.leftDrawer, drawer, {
+  drawerOpenAnimation: Ti.UI.createAnimation({
+    left  : 250,
     curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
     duration : 150
   }),
-  rightAnimation: Ti.UI.createAnimation({
+  drawerCloseAnimation: Ti.UI.createAnimation({
     left : 0,
     curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
     duration : 150
+  })
+});
+
+_.extend($.rightDrawer, drawer, {
+  drawerOpenAnimation: Ti.UI.createAnimation({
+    left : -250,
+    curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
+    duration : 150
   }),
-  opened: false
+  drawerCloseAnimation: Ti.UI.createAnimation({
+    left : 0,
+    curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
+    duration : 150
+  })
 });
 
 exports.init = function(options) {
-  $.slideMenuDrawer.add(options.drawer);
-  $.slideMenuContent.add(options.content);
-};
-
-exports.toggle = function(e) {
-  if ($.slideMenu.opened) {
-    $.slideMenu.fireEvent('close');
-    $.slideMenuContent.animate($.slideMenu.rightAnimation);
-    $.slideMenu.opened = false;
+  if(options.hasOwnProperty('leftDrawer')) {
+    $.leftDrawer.add(options.leftDrawer);
   }
   else {
-    $.slideMenu.fireEvent('open');
-    $.slideMenuContent.animate($.slideMenu.leftAnimation);
-    $.slideMenu.opened = true;
+    $.slideMenu.remove($.leftDrawer);
   }
+  if(options.hasOwnProperty('rightDrawer')) {
+    $.rightDrawer.add(options.rightDrawer);
+  }
+  else {
+    $.slideMenu.remove($.rightDrawer);
+  }
+
+  $.content.add(options.content);
 };
