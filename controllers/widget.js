@@ -2,17 +2,16 @@ var drawer = {
   is_opened: false,
   initialize: function(content) {
     this.setWidth(content.width);
-    console.log(this.width);
     this.add(content);
   },
   openDrawer: function() {
     this.fireEvent('open');
-    $.content.animate(this.drawerOpenAnimation);
+    $.content.animate(this.getDrawerOpenAnimation());
     this.is_opened = true;
   },
   closeDrawer: function() {
     this.fireEvent('close');
-    $.content.animate(this.drawerCloseAnimation);
+    $.content.animate(this.getDrawerCloseAnimation());
     this.is_opened = false;
   },
   toggleDrawer: function() {
@@ -26,29 +25,39 @@ var drawer = {
 };
 
 _.extend($.leftDrawer, drawer, {
-  drawerOpenAnimation: Ti.UI.createAnimation({
-    left  : this.width,
-    curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
-    duration : 150
-  }),
-  drawerCloseAnimation: Ti.UI.createAnimation({
-    left : 0,
-    curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
-    duration : 150
-  })
+  getDrawerOpenAnimation: function() {
+    var width = this.width;
+    return Ti.UI.createAnimation({
+      left  : width,
+      curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
+      duration : 150
+    });
+  },
+  getDrawerCloseAnimation: function() {
+    return Ti.UI.createAnimation({
+      left : 0,
+      curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
+      duration : 150
+    })
+  }
 });
 
 _.extend($.rightDrawer, drawer, {
-  drawerOpenAnimation: Ti.UI.createAnimation({
-    left : - this.getWidth(),
-    curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
-    duration : 150
-  }),
-  drawerCloseAnimation: Ti.UI.createAnimation({
-    left : 0,
-    curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
-    duration : 150
-  })
+  getDrawerOpenAnimation: function() {
+    var width = this.width;
+    return Ti.UI.createAnimation({
+      left : - width,
+      curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
+      duration : 150
+    });
+  },
+  getDrawerCloseAnimation: function() {
+    return Ti.UI.createAnimation({
+      left : 0,
+      curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
+      duration : 150
+    })
+  }
 });
 
 $.leftDrawer.on('open', function(){
