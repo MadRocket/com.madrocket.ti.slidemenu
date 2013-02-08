@@ -29,9 +29,9 @@ In your controller:
       $.menu.toggleRightDrawer();
     });
 
-    $.menu.on('left_open', function(e){
+    $.menu.on('open:[left]', function(e){
       // Do something on open
     });
-    $.menu.on('right_close', function(e){
+    $.menu.on('close:[right]', function(e){
       // Do something on close
     });
