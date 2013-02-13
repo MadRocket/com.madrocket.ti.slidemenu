@@ -60,7 +60,78 @@ _.extend($.rightDrawer, drawer, {
   }
 });
 
+var touchStartX = 0;
+var touchStarted = false;
+
+$.content.addEventListener('touchstart', function(event) {
+  touchStartX = parseInt(event.x, 10);
+  touchStarted = true;
+});
+
+$.content.addEventListener('touchend', function(event) {
+  touchStarted = false;
+
+  var coords = event.source.convertPointToView({x:event.x,y:event.y}, $.slideMenu);
+  var touchEndX = parseInt(event.x, 10);
+
+  var delta = touchEndX - touchStartX;
+
+  if(delta == 0) { return false; }
+
+  if($.content.left > 0) {
+    if (delta > 10) {
+      $.leftDrawer.openDrawer();
+    } else {
+      $.leftDrawer.closeDrawer();
+    }
+    if (delta < -5) {
+      $.leftDrawer.closeDrawer();
+    } else {
+      $.leftDrawer.openDrawer();
+    }
+  }
+  else {
+    if (delta > 5) {
+      $.rightDrawer.closeDrawer();
+    } else {
+      $.rightDrawer.openDrawer();
+    }
+    if (delta < -10) {
+      $.rightDrawer.openDrawer();
+    } else {
+      $.rightDrawer.closeDrawer();
+    }
+  }
+});
+
+$.content.addEventListener('touchmove', function(event) {
+  var coords = event.source.convertPointToView({x:event.x,y:event.y}, $.slideMenu);
+  var _x = parseInt(coords.x, 10);
+  var newLeft = _x - touchStartX;
+  var swipeToRight = newLeft > 0 ? true : false;
+  var swipeToLeft = newLeft < 0 ? true : false;
+  if (touchStarted) {
+    if(swipeToRight) {
+      $.leftDrawer.zIndex = 2;
+      $.rightDrawer.zIndex = 1;
+    }
+    else {
+      $.leftDrawer.zIndex = 1;
+      $.rightDrawer.zIndex = 2;
+    }
+
+    if ((swipeToRight && newLeft <= $.leftDrawer.width) || (swipeToLeft && newLeft >= - $.rightDrawer.width)) {
+      $.content.left = newLeft;
+    }
+  }
+  if (newLeft > 10) {
+    touchStarted = true;
+  }
+});
+
 $.leftDrawer.on('open', function(){
+  $.rightDrawer.is_opened = false;
+
   $.leftDrawer.zIndex = 2;
   $.rightDrawer.zIndex = 1;
   $.trigger('open:[left]');
@@ -70,6 +141,8 @@ $.leftDrawer.on('close', function(){
 });
 
 $.rightDrawer.on('open', function(){
+  $.leftDrawer.is_opened = false;
+
   $.leftDrawer.zIndex = 1;
   $.rightDrawer.zIndex = 2;
   $.trigger('open:[right]');
