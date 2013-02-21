@@ -2,6 +2,8 @@ Titanium Alloy Slide Menu Widget
 ================================
 com.madrocket.ti.slidemenu
 
+Demo app: https://github.com/MadRocket/slidemenu-demo
+
 Highly inspired by [https://github.com/danielsefton/AlloySliderMenu](https://github.com/danielsefton/AlloySliderMenu)
 
 In your view:
