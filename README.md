@@ -24,10 +24,10 @@ In your controller:
     });
 
     // Assume you have these buttons in the 'content' view
-    content.leftb.on('click', function(){
+    content.leftb.addEventListener('click', function(){
       $.menu.toggleLeftDrawer();
     });
-    content.rightb.on('click', function(){
+    content.rightb.addEventListener('click', function(){
       $.menu.toggleRightDrawer();
     });
 
