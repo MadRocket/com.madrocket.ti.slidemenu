@@ -129,25 +129,25 @@ $.content.addEventListener('touchmove', function(event) {
   }
 });
 
-$.leftDrawer.on('open', function(){
+$.leftDrawer.addEventListener('open', function(){
   $.rightDrawer.is_opened = false;
 
   $.leftDrawer.zIndex = 2;
   $.rightDrawer.zIndex = 1;
   $.trigger('open:[left]');
 });
-$.leftDrawer.on('close', function(){
+$.leftDrawer.addEventListener('close', function(){
   $.trigger('close:[left]');
 });
 
-$.rightDrawer.on('open', function(){
+$.rightDrawer.addEventListener('open', function(){
   $.leftDrawer.is_opened = false;
 
   $.leftDrawer.zIndex = 1;
   $.rightDrawer.zIndex = 2;
   $.trigger('open:[right]');
 });
-$.rightDrawer.on('close', function(){
+$.rightDrawer.addEventListener('close', function(){
   $.trigger('close:[right]');
 });
 
