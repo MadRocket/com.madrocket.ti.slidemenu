@@ -1,13 +1,13 @@
 <Alloy>
-  <Window id="slideMenu">
-    <Window id="leftDrawer" top="0" left="0" zIndex="1">
+  <View id="slideMenu">
+    <View id="leftDrawer" top="0" left="0" zIndex="1">
 
-    </Window>
-    <Window id="content" top="0" left="0" zIndex="10">
+    </View>
+    <View id="content" top="0" left="0" zIndex="10">
 
-    </Window>
-    <Window id="rightDrawer" top="0" left="0" zIndex="1">
+    </View>
+    <View id="rightDrawer" top="0" left="0" zIndex="1">
 
-    </Window>
-  </Window>
+    </View>
+  </View>
 </Alloy>
