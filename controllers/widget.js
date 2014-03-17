@@ -38,7 +38,7 @@ _.extend($.leftDrawer, drawer, {
       left : 0,
       curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
       duration : 150
-    })
+    });
   }
 });
 
@@ -56,7 +56,7 @@ _.extend($.rightDrawer, drawer, {
       left : 0,
       curve : Ti.UI.ANIMATION_CURVE_EASE_OUT,
       duration : 150
-    })
+    });
   }
 });
 
@@ -169,5 +169,5 @@ exports.init = function(options) {
   $.content.add(options.content);
 };
 
-exports.toggleRightDrawer = function(){ $.rightDrawer.toggleDrawer(); }
-exports.toggleLeftDrawer = function(){ $.leftDrawer.toggleDrawer(); }
+exports.toggleRightDrawer = function(){ $.rightDrawer.toggleDrawer(); };
+exports.toggleLeftDrawer = function(){ $.leftDrawer.toggleDrawer(); };
